@@ -10,6 +10,21 @@ import urllib
 
 class Karaoke():
 
+    def get_multimedia(self, atributo, valor_entrada):
+        #si tiene url la descargo y cambio nombre e imprimo
+        if valor_entrada[:7] == "http://":
+            #recorto el nombre del archivo a descargar
+            name_archivo = valor_entrada.rsplit('/')[-1]
+            #descargo la url
+            urllib.urlretrieve(valor_entrada, name_archivo)
+            atributoYvalor = "\t" + atributo +  '="' + name_archivo + '"'
+            return atributoYvalor
+        #si no tiene url hago lo de siempre
+        else:
+            atributoYvalor =  "\t" + atributo + '="' + valor_entrada + '"'
+            return atributoYvalor
+
+
     def print_tags(self, list_tags):
         #1-busco etiqueta
         #2-compruebo que los atributos no esten vacios
@@ -22,7 +37,10 @@ class Karaoke():
 
             for atributo in diccionario.keys():
                 if diccionario[atributo] != "":
-                    mis_atributos += "\t" + atributo + '="' + diccionario[atributo] + '"'
+                    if atributo == "src":
+                        mis_atributos = self.get_multimedia(atributo, diccionario[atributo])
+                    else:
+                        mis_atributos += "\t" + atributo + '="' + diccionario[atributo] + '"'
             print(etiqueta + mis_atributos + "\n")
 
 if __name__ == "__main__":
