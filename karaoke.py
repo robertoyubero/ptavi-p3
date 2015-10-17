@@ -6,6 +6,7 @@ from xml.sax.handler import ContentHandler
 from xml.sax import make_parser
 from smallsmilhandler import SmallSMILHandler
 import sys
+import urllib
 
 class Karaoke():
 
