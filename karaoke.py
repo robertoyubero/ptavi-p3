@@ -9,10 +9,11 @@ import sys
 import urllib
 import json
 
+
 class KaraokeLocal():
     my_tags = []
 
-    def __init__ (self, ficheroSmil):
+    def __init__(self, ficheroSmil):
         #parseo el fichero
         parser = make_parser()
         smilHandler = SmallSMILHandler()
@@ -69,8 +70,6 @@ class KaraokeLocal():
         json.dump(self.my_tags, open(fichero, 'w'))
 
 if __name__ == "__main__":
-
-
     try:
         fichSmil = sys.argv[1]
         my_Karaoke = KaraokeLocal(fichSmil)
