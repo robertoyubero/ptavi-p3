@@ -65,7 +65,8 @@ class KaraokeLocal():
         return name_archivo
 
     def to_json(self, fichero_smil):
-        json.dump(fichero_smil, "fichero.json")
+        fichero = fichero_smil.split('.')[0] + '.json'
+        json.dump(self.my_tags, open(fichero, 'w'))
 
 if __name__ == "__main__":
 
@@ -75,9 +76,7 @@ if __name__ == "__main__":
         my_Karaoke = KaraokeLocal(fichSmil)
         print(my_Karaoke)
         my_Karaoke.to_json(fichSmil)
-        print(my_Karaoke)
         my_Karaoke.do_local()
-        print(my_Karaoke)
         my_Karaoke.to_json(fichSmil)
         print(my_Karaoke)
     except IndexError:
