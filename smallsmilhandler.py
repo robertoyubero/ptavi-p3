@@ -13,7 +13,7 @@ class SmallSMILHandler(ContentHandler):
 
         self.tags = []
         self.dic = {
-        "root-layout": ['width', 'heigh', 'background-color'],
+        "root-layout": ['width', 'height', 'background-color'],
         "region": ['id', 'top', 'bottom', 'left', 'right'],
         "img": ['src', 'region', 'begin', 'dur'],
         "audio": ['src', 'begin', 'dur'],
@@ -31,6 +31,8 @@ class SmallSMILHandler(ContentHandler):
                 dicc[item] = attrs.get(item, "")
             self.tags.append([name, dicc])
 
+    def get_tags(self):
+            return self.tags
 
 if __name__ == "__main__":
     """
@@ -40,6 +42,4 @@ if __name__ == "__main__":
     smilHandler = SmallSMILHandler()
     parser.setContentHandler(smilHandler)
     parser.parse(open('karaoke.smil'))
-    print(smilHandler.tags)
-
-    print(smilHandler.tags)
+    #print(smilHandler.get_tags())
